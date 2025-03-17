@@ -4,6 +4,7 @@ import "./RegistrationPage.css";
 const Registration = () => {
   const [togglePassword, setTogglePassword] = useState(false);
   const [toggleConfirmPassword, setToggleConfirmPassword] = useState(false);
+  const [error, setError] = useState("");
 
   const [formData, setFormData] = useState({
     email: "",
@@ -12,10 +13,20 @@ const Registration = () => {
   });
 
   const inputChangeHandler = (label, value) => {
-    setFormData((prev) => ({
-      ...prev,
-      [label]: value,
-    }));
+    setFormData((prev) => {
+      const updatedFormData = { ...prev, [label]: value };
+
+      // Check if passwords match
+      if (label === "confirmPassword" || label === "password") {
+        if (updatedFormData.password !== updatedFormData.confirmPassword) {
+          setError("Passwords do not match!");
+        } else {
+          setError(""); // Clear error if they match
+        }
+      }
+
+      return updatedFormData;
+    });
   };
 
   return (
@@ -51,7 +62,9 @@ const Registration = () => {
             <div className="form-group">
               <div className="input-container">
                 <input
-                  className="registration-page-form-input"
+                  className={`registration-page-form-input ${
+                    error ? "input-error" : ""
+                  }`}
                   type={togglePassword ? "text" : "password"}
                   placeholder="Password"
                   value={formData.password}
@@ -74,7 +87,9 @@ const Registration = () => {
             <div className="form-group">
               <div className="input-container">
                 <input
-                  className="registration-page-form-input"
+                  className={`registration-page-form-input ${
+                    error ? "registration-input-error" : ""
+                  }`}
                   type={toggleConfirmPassword ? "text" : "password"}
                   placeholder="Confirm Password"
                   value={formData.confirmPassword}
@@ -93,7 +108,14 @@ const Registration = () => {
               </div>
             </div>
 
-            <button type="submit" className="registration-page-signup-button">
+            {/* Error Message */}
+            {error && <p className="registration-error-text">{error}</p>}
+
+            <button
+              type="submit"
+              className="registration-page-signup-button"
+              disabled={!!error} // Disable button if there is an error
+            >
               Sign Up
             </button>
           </form>

@@ -3,6 +3,8 @@ import "./LoginPage.css";
 
 const Login = () => {
   const [togglePassword, setTogglePassword] = useState(false);
+  const [errors, setErrors] = useState({ email: "", password: "" });
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -13,6 +15,27 @@ const Login = () => {
       ...prev,
       [label]: value,
     }));
+
+    // Clear the error when user starts typing
+    setErrors((prev) => ({
+      ...prev,
+      [label]: value.trim() ? "" : prev[label],
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    let newErrors = {};
+    if (!formData.email.trim()) newErrors.email = "Email is required";
+    if (!formData.password.trim()) newErrors.password = "Password is required";
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length === 0) {
+      console.log("Form Submitted:", formData);
+      // Proceed with login logic (API call, etc.)
+    }
   };
 
   return (
@@ -27,30 +50,37 @@ const Login = () => {
           <div className="login-page-section2">
             <p className="login-page-section2-para1">Hello Nutritionist</p>
             <p className="login-page-section2-para2">
-              Welcome back to right intake
+              Welcome back to Right Intake
             </p>
           </div>
-          <form className="login-page-section3">
+          <form className="login-page-section3" onSubmit={handleSubmit}>
             {/* Email Field */}
             <div className="form-group">
               <input
-                className="login-page-form-input"
+                className={`login-page-form-input ${
+                  errors.email ? "login-input-error" : ""
+                }`}
                 type="text"
                 placeholder="Email"
                 value={formData.email}
                 onChange={(e) => inputChangeHandler("email", e.target.value)}
               />
+              {errors.email && <p className="login-error-text">{errors.email}</p>}
             </div>
 
             {/* Password Field with Toggle Icon Inside */}
             <div className="form-group">
               <div className="input-container">
                 <input
-                  className="login-page-form-input"
+                  className={`login-page-form-input ${
+                    errors.password ? "login-input-error" : ""
+                  }`}
                   type={togglePassword ? "text" : "password"}
                   placeholder="Password"
                   value={formData.password}
-                  onChange={(e) => inputChangeHandler("password", e.target.value)}
+                  onChange={(e) =>
+                    inputChangeHandler("password", e.target.value)
+                  }
                 />
                 <button
                   type="button"
@@ -63,6 +93,9 @@ const Login = () => {
                   />
                 </button>
               </div>
+              {errors.password && (
+                <p className="login-error-text">{errors.password}</p>
+              )}
             </div>
 
             <p className="login-page-forgotpass">Forget password?</p>

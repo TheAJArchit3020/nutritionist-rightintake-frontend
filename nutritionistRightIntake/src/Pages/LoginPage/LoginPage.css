@@ -71,3 +71,15 @@ p.login-page-section2-para2 {
     width: 390px;
     text-align: right;
 }
+
+.login-error-text {
+    color: red;
+    text-align: left;
+    width: 390px;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.login-input-error {
+    border: 2px solid red !important;
+}

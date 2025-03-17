@@ -64,4 +64,15 @@ p.registration-page-section2-para2 {
     font-weight: bold;
     font-size: 20px;
     border-radius: 10px;
+    margin-top: 98px;
 }
+.registration-error-text{
+    color: red;
+    text-align: left;
+    width: 390px;
+    font-size: 14px;
+    margin-top: -20px;
+}
+.registration-input-error {
+    border: 2px solid red !important;
+  }
