@@ -16,10 +16,10 @@ function App() {
     <>
       {/* <Registration /> */}
       {/* <Login /> */}
-      <ForgotPassword />
+      {/* <ForgotPassword /> */}
       {/* <OtpPage /> */}
       {/* <CreateNewPassword /> */}
-      {/* <MainDashboardPage /> */}
+      <MainDashboardPage />
     </>
   );
 }

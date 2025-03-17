@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./forgotPasswordPage.css";
 
 const ForgotPassword = () => {
-  const [togglePassword, setTogglePassword] = useState(false);
 
   const [formData, setFormData] = useState({
     password: "",
@@ -15,11 +14,7 @@ const ForgotPassword = () => {
     }));
   };
 
-  const passwordToggleHandler = () => {
-    setTogglePassword(!togglePassword);
-  };
 
-  console.log(formData);
 
   return (
     <div className="forgotpassword-page-container">

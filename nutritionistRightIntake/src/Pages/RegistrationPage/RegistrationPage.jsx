@@ -18,14 +18,6 @@ const Registration = () => {
     }));
   };
 
-  const passwordToggleHandler = (field) => {
-    if (field === "password") {
-      setTogglePassword(!togglePassword);
-    } else if (field === "confirmPassword") {
-      setToggleConfirmPassword(!toggleConfirmPassword);
-    }
-  };
-
   return (
     <div className="registration-page-container">
       <img src="./registrationimage.svg" alt="registration" />
@@ -44,6 +36,7 @@ const Registration = () => {
             </p>
           </div>
           <form className="registration-page-section3">
+            {/* Email Input */}
             <div className="form-group">
               <input
                 className="registration-page-form-input"
@@ -53,37 +46,51 @@ const Registration = () => {
                 onChange={(e) => inputChangeHandler("email", e.target.value)}
               />
             </div>
-            <div className="form-group pass-toggle">
-              <input
-                className="registration-page-form-input"
-                type={togglePassword ? "text" : "password"}
-                placeholder="Password"
-                value={formData.password}
-                onChange={(e) => inputChangeHandler("password", e.target.value)}
-              />
-              {/* <button
+
+            {/* Password Input with Toggle */}
+            <div className="form-group">
+              <div className="input-container">
+                <input
+                  className="registration-page-form-input"
+                  type={togglePassword ? "text" : "password"}
+                  placeholder="Password"
+                  value={formData.password}
+                  onChange={(e) => inputChangeHandler("password", e.target.value)}
+                />
+                <button
                   type="button"
-                  onClick={() => passwordToggleHandler("password")}
+                  className="toggle-password-btn"
+                  onClick={() => setTogglePassword(!togglePassword)}
                 >
-                  {togglePassword ? "Hide" : "Show"}
-                </button> */}
+                  <img
+                    src={togglePassword ? "./crossedeyes.svg" : "./eyes.svg"}
+                    alt="toggle visibility"
+                  />
+                </button>
+              </div>
             </div>
-            <div className="form-group pass-toggle">
-              <input
-                className="registration-page-form-input"
-                type={toggleConfirmPassword ? "text" : "password"}
-                placeholder="Confirm Password"
-                value={formData.confirmPassword}
-                onChange={(e) =>
-                  inputChangeHandler("confirmPassword", e.target.value)
-                }
-              />
-              {/* <button
+
+            {/* Confirm Password Input with Toggle */}
+            <div className="form-group">
+              <div className="input-container">
+                <input
+                  className="registration-page-form-input"
+                  type={toggleConfirmPassword ? "text" : "password"}
+                  placeholder="Confirm Password"
+                  value={formData.confirmPassword}
+                  onChange={(e) => inputChangeHandler("confirmPassword", e.target.value)}
+                />
+                <button
                   type="button"
-                  onClick={() => passwordToggleHandler("confirmPassword")}
+                  className="toggle-password-btn"
+                  onClick={() => setToggleConfirmPassword(!toggleConfirmPassword)}
                 >
-                  {toggleConfirmPassword ? "Hide" : "Show"}
-                </button> */}
+                  <img
+                    src={toggleConfirmPassword ? "./crossedeyes.svg" : "./eyes.svg"}
+                    alt="toggle visibility"
+                  />
+                </button>
+              </div>
             </div>
 
             <button type="submit" className="registration-page-signup-button">
