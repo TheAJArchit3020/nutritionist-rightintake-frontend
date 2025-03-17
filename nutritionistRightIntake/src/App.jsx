@@ -16,9 +16,9 @@ function App() {
     <>
       {/* <Registration /> */}
       {/* <Login /> */}
-      {/* <ForgotPassword /> */}
+      <ForgotPassword />
       {/* <OtpPage /> */}
-      <CreateNewPassword />
+      {/* <CreateNewPassword /> */}
       {/* <MainDashboardPage /> */}
     </>
   );
