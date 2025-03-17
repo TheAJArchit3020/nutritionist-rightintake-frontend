@@ -1,0 +1,57 @@
+.profile-page-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 25px 100px;
+  height: 100vh;
+}
+.profile-name-card {
+  padding: 25px 0px 25px 20px;
+  background-color: #d6e3ea;
+  border-radius: 12px;
+  display: flex;
+  gap: 20px;
+  width: 500px;
+  align-items: center;
+  justify-content: flex-start;
+}
+.profile-photo-image {
+  height: 42px;
+  width: 42px;
+  border-radius: 50px;
+  background-color: #626262;
+}
+.profile-name-item {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.profile-other-details-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 25px 0px 25px 20px;
+  background-color: #d6e3ea;
+  width: 500px;
+  border-radius: 12px;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+.other-details-item {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.profile-reset-pass-item {
+  padding: 12px 25px;
+  background-color: #f4a1a1;
+  width: fit-content;
+  border-radius: 12px;
+  transition: 0.5s ease;
+  cursor: pointer;
+}
+
+.profile-reset-pass-item:hover {
+  background-color: #eb9999;
+}

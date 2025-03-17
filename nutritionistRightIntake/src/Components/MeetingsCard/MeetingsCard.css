@@ -1,0 +1,101 @@
+.meeting-card-container {
+  position: relative;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 1rem;
+}
+.meeting-card-heading {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.meeting-content {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 10%);
+  border-radius: 32px;
+}
+.meeting-item {
+  display: flex;
+  flex-direction: row;
+  gap: 70px;
+  border-bottom: 1px solid #d3d3d3;
+  align-items: center;
+  padding: 25px;
+}
+.meeting-time {
+}
+
+.meeting-link {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 4px 12px;
+  background-color: #e6effc;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+.meeting-link:hover {
+  background-color: #d0e0f7;
+}
+.plan-name {
+}
+.plan-duration {
+}
+.meetings-card-popup-box {
+  position: fixed;
+  background-color: white;
+  border-radius: 20px;
+  padding: 40px;
+  width: 373px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.meetings-card-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.user-details {
+  cursor: pointer;
+  transition: 0.5s ease;
+  text-decoration: underline;
+}
+
+.user-details:hover {
+  text-decoration: none;
+}
+
+.meetings-card-close-popup {
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+.u-d-popup-name {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.popup-label {
+  font-size: 1rem;
+  font-weight: bold;
+}
+.u-d-name {
+  border-radius: 12px;
+  border: 1px solid #00000079;
+  padding: 10px 20px;
+  color: rgb(80, 80, 80);
+}

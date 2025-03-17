@@ -1,0 +1,8 @@
+.meetingschedule-container {
+  height: 100vh;
+  padding: 25px 100px;
+}
+.meeting-schedule-card-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
