@@ -1,0 +1,86 @@
+.otp-page-container {
+    padding: 1rem;
+    background-color: #F4F4F4;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.otp-page-container-wrapper {
+    width: 100%;
+    padding: 2rem;
+
+}
+.otp-input{
+    width: 60px;
+    height: 65px;
+    margin-right: 10px;
+    border-radius: 10px;
+    border: 1px solid #999999;
+    text-align: center;
+    font-size: 24px;
+    background-color: transparent;
+    
+
+}
+
+
+.otp-page-section1 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.otp-page-section2 {
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+
+p.otp-page-section2-para1 {
+
+    font-size: 48px;
+    font-weight: bold;
+}
+
+p.otp-page-section2-para2 {
+    font-size: 16px;
+}
+
+
+.otp-page-section3 {
+    margin-top: 54px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.otp-page-form-input {
+    border: 1px solid #999999;
+    border-radius: 8px;
+    padding: 12px 10px;
+    width: 390px;
+    background-color: transparent;
+}
+
+.otp-page-signup-button {
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 10%);
+    text-align: center;
+    background-color: #EAF0F4;
+    width: 390px;
+    padding: 12px;
+    border: none;
+    color: #77A5B9;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 10px;
+    margin-top: 72px;
+}
+
+.otp-page-forgotpass {
+    width: 390px;
+    text-align: right;
+}
