@@ -18,7 +18,7 @@ function App() {
       {/* <Login /> */}
       {/* <ForgotPassword /> */}
       {/* <OtpPage /> */}
-      {/* <CreateNewPassword /> */}
+      <CreateNewPassword />
       <MainDashboardPage />
     </>
   );

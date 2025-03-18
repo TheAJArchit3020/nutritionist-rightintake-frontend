@@ -19,7 +19,7 @@ const CreateNewPassword = () => {
     // Check password match when confirmPassword changes
     if (label === "confirmPassword") {
       if (formData.password !== value) {
-        setError("Passwords do not match!");
+        setError("Password and Confirm Password must not be different");
       } else {
         setError("");
       }
@@ -32,7 +32,7 @@ const CreateNewPassword = () => {
     if (formData.password === formData.confirmPassword) {
       console.log("Password successfully set:", formData.password);
     } else {
-      setError("Passwords do not match!");
+      setError("Password and Confirm Password must not be different");
     }
   };
 
@@ -58,7 +58,9 @@ const CreateNewPassword = () => {
             <div className="form-group">
               <div className="input-container">
                 <input
-                  className="create-new-password-page-form-input"
+                  className={`create-new-password-page-form-input ${
+                    error ? "create-new-password-input-error" : ""
+                  }`}
                   type={togglePassword ? "text" : "password"}
                   placeholder="Enter password"
                   value={formData.password}
@@ -84,7 +86,7 @@ const CreateNewPassword = () => {
               <div className="input-container">
                 <input
                   className={`create-new-password-page-form-input ${
-                    error ? "error-border" : ""
+                    error ? "create-new-password-input-error" : ""
                   }`}
                   type={toggleConfirmPassword ? "text" : "password"}
                   placeholder="Confirm password"
@@ -96,13 +98,13 @@ const CreateNewPassword = () => {
                 <button
                   type="button"
                   className="toggle-password-btn"
-                  onClick={() => setToggleConfirmPassword(!toggleConfirmPassword)}
+                  onClick={() =>
+                    setToggleConfirmPassword(!toggleConfirmPassword)
+                  }
                 >
                   <img
                     src={
-                      toggleConfirmPassword
-                        ? "./crossedeyes.svg"
-                        : "./eyes.svg"
+                      toggleConfirmPassword ? "./crossedeyes.svg" : "./eyes.svg"
                     }
                     alt="toggle visibility"
                   />
@@ -110,7 +112,15 @@ const CreateNewPassword = () => {
               </div>
             </div>
 
-            {error && <p className="error-text">{error}</p>}
+            {error && (
+             <div className="create-new-password-error-div">
+               <img src="./crossicon.svg" alt="crossicon" /> 
+               <p className="create-new-password-error-text">
+               {error}
+              </p>
+             </div>
+              
+            )}
 
             <button
               type="submit"
