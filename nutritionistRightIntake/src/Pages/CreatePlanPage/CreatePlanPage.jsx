@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import "./CreatePlanPage.css";
+import axios from "axios";
+import { createplanapi } from "../../Apis/Apis";
 
-const CreatePlanPage = () => {
+const CreatePlanPage = ({ parseusertoken }) => {
+  const token = parseusertoken?.token;
+
   // Form States
   const [planName, setPlanName] = useState("");
   const [benefits, setBenefits] = useState("");
@@ -14,15 +18,11 @@ const CreatePlanPage = () => {
   const [selectedTimeSlots, setSelectedTimeSlots] = useState([]);
   const [selectedDays, setSelectedDays] = useState([]);
 
+  // Pricing State
+  const [prices, setPrices] = useState({});
+
   // Available Options
-  const durations = [
-    "1 Day",
-    "1 Week",
-    "1 Month",
-    "3 Months",
-    "6 Months",
-    "1 Year",
-  ];
+  const durations = ["1 Month", "3 Months", "6 Months", "1 Year"];
   const timeSlots = [
     "7:00 AM",
     "8:00 AM",
@@ -41,15 +41,65 @@ const CreatePlanPage = () => {
     "9:00 PM",
     "10:00 PM",
   ];
-  const days = ["Mon", "Tue", "Wed", "Thurs", "Fri", "Sat", "Sun"];
+  const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
   const callLimits = ["30 mins", "60 mins", "90 mins"];
 
-  // Handle multi-select buttons
+  // Toggle selection for multi-select
   const toggleSelection = (item, setState, state) => {
     if (state.includes(item)) {
       setState(state.filter((i) => i !== item));
     } else {
       setState([...state, item]);
+    }
+  };
+
+  // Handle price input changes
+  const handlePriceChange = (duration, value) => {
+    setPrices((prevPrices) => ({
+      ...prevPrices,
+      [duration]: value ? parseInt(value) : 0,
+    }));
+  };
+
+  const CreatePlanHandler = async () => {
+    try {
+      if (token) {
+        const payload = {
+          name: planName,
+          description,
+          benefits,
+          features,
+          duration: selectedDurations,
+          callDuration: callTimeLimit,
+          availableDays: selectedDays,
+          availableTimes: selectedTimeSlots,
+          prices,
+        };
+
+        const response = await axios.post(createplanapi, payload, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (response.status === 200) {
+          alert(response.data.message);
+          // Reset form values
+          setPlanName("");
+          setBenefits("");
+          setFeatures("");
+          setDescription("");
+          setCallTimeLimit("30 mins");
+          setSelectedDurations([]);
+          setSelectedTimeSlots([]);
+          setSelectedDays([]);
+          setPrices({});
+        }
+
+        console.log(response.data);
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -206,6 +256,9 @@ const CreatePlanPage = () => {
                   <input
                     type="number"
                     placeholder={`Enter price for ${duration}`}
+                    onChange={(e) =>
+                      handlePriceChange(duration, e.target.value)
+                    }
                   />
                 </div>
               ))}
@@ -213,7 +266,7 @@ const CreatePlanPage = () => {
           )}
         </div>
 
-        <div className="submit-plan-creation-btn">
+        <div className="submit-plan-creation-btn" onClick={CreatePlanHandler}>
           <span>Create Plan</span>
         </div>
         {/* Submit Button */}

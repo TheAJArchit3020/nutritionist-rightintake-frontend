@@ -3,7 +3,7 @@ import MeetingsCard from "../../Components/MeetingsCard/MeetingsCard";
 import "./MeetingSchedule.css";
 import YourPlansCard from "../../Components/YourPlansCard/YourPlansCard";
 import AnalyticsCard from "../../Components/AnalyticsCard/AnalyticsCard";
-const MeetingSchedule = () => {
+const MeetingSchedule = ({ parseusertoken }) => {
   return (
     <>
       <div className="meetingschedule-container">

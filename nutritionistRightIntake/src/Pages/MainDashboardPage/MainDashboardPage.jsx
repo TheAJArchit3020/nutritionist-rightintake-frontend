@@ -18,9 +18,15 @@ const MainDashboardPage = () => {
     <>
       <div className="main-dashboard-container">
         <Navbar onTabChange={onTabChange} />
-        {activeTab === "Meeting Schedule" && <MeetingSchedule />}
-        {activeTab === "Create Plan" && <CreatePlanPage />}
-        {activeTab === "Profile" && <ProfilePage parseusertoken={parseusertoken} />}
+        {activeTab === "Meeting Schedule" && (
+          <MeetingSchedule parseusertoken={parseusertoken} />
+        )}
+        {activeTab === "Create Plan" && (
+          <CreatePlanPage parseusertoken={parseusertoken} />
+        )}
+        {activeTab === "Profile" && (
+          <ProfilePage parseusertoken={parseusertoken} />
+        )}
       </div>
     </>
   );
