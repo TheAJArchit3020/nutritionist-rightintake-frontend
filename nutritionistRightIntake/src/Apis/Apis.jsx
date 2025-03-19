@@ -1,0 +1,3 @@
+const baseurl = "https://api.rightintake.com/api/app";
+export const registerapi = `${baseurl}/nutritionist/register`;
+export const loginapi = `${baseurl}/nutritionist/login`;

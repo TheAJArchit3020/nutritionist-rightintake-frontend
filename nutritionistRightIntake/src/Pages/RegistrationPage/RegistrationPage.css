@@ -1,9 +1,15 @@
 .registration-page-container {
-    padding: 1rem;
+    /* padding: 1rem; */
     background-color: #F4F4F4;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+}
+
+img.image1 {
+    height: 96vh;
+    padding-left: 1rem;
 }
 
 .registration-page-container-wrapper {
@@ -64,7 +70,8 @@ p.registration-page-section2-para2 {
     font-weight: bold;
     font-size: 20px;
     border-radius: 10px;
-    margin-top: 98px;
+    margin-top: 60px;
+    cursor: pointer;
 }
 .registration-error-text{
     color: red;

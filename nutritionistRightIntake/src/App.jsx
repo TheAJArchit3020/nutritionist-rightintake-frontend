@@ -8,18 +8,20 @@ import Login from "./Pages/LoginPage/LoginPage";
 import ForgotPassword from "./Pages/ForgotPassword/ForgotPasswordPage";
 import OtpPage from "./Pages/OtpPage/OtpPage";
 import CreateNewPassword from "./Pages/ForgotPassword/CreateNewPasswordPage";
+import RoutingPage from "./Routes/Routing";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <>
+      <RoutingPage />
       {/* <Registration /> */}
       {/* <Login /> */}
       {/* <ForgotPassword /> */}
       {/* <OtpPage /> */}
-      <CreateNewPassword />
-      <MainDashboardPage />
+      {/* <CreateNewPassword /> */}
+      {/* <MainDashboardPage /> */}
     </>
   );
 }

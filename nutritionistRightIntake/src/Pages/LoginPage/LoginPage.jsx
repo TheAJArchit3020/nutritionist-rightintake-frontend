@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import "./LoginPage.css";
+import axios from "axios";
+import { registerapi } from "../../Apis/Apis";
+import { Link, useNavigate } from "react-router";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [togglePassword, setTogglePassword] = useState(false);
   const [errors, setErrors] = useState({ email: "", password: "" });
 
@@ -23,7 +27,7 @@ const Login = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     let newErrors = {};
@@ -33,14 +37,36 @@ const Login = () => {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      console.log("Form Submitted:", formData);
+      try {
+        const registerResponse = await axios.post(registerapi, {
+          email: formData.email,
+          password: formData.password,
+        });
+
+        if (registerResponse.status === 201) {
+          alert("Registration Successful!");
+
+          navigate("/");
+        } else {
+          alert(registerResponse.message);
+        }
+        // Reset form fields after successful registration
+        setFormData({
+          email: "",
+          password: "",
+          confirmPassword: "",
+        });
+      } catch (error) {
+        console.error("Registration Error:", error);
+      }
+
       // Proceed with login logic (API call, etc.)
     }
   };
 
   return (
     <div className="login-page-container">
-      <img src="./loginimage.svg" alt="login" />
+      <img src="./loginimage.svg" alt="login" className="image1" />
       <div className="login-page-container-wrapper">
         <div className="login-page-container-content">
           <div className="login-page-section1">
@@ -65,7 +91,9 @@ const Login = () => {
                 value={formData.email}
                 onChange={(e) => inputChangeHandler("email", e.target.value)}
               />
-              {errors.email && <p className="login-error-text">{errors.email}</p>}
+              {errors.email && (
+                <p className="login-error-text">{errors.email}</p>
+              )}
             </div>
 
             {/* Password Field with Toggle Icon Inside */}
@@ -104,7 +132,10 @@ const Login = () => {
               Sign In
             </button>
             <p className="login-page-haveaccount">
-              Don’t have an account? <b>Sign up</b>
+              Don’t have an account?{" "}
+              <Link to={"./registrationpage"}>
+                <b>Sign up</b>
+              </Link>
             </p>
           </form>
         </div>
