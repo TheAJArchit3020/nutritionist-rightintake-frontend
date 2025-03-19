@@ -39,7 +39,11 @@ const UserDetailsPopup = ({ togglePopup }) => {
     </>
   );
 };
-const MeetingsCard = () => {
+const MeetingsCard = (meetingsArray) => {
+  const MEETINGS = meetingsArray?.meetingsArray?.meetings;
+ 
+
+  console.log("meetingsArray in meeting card : ", meetingsArray?.meetingsArray);
   const [showPopup, setShowPopup] = useState(false);
 
   const togglePopup = () => {
@@ -52,48 +56,34 @@ const MeetingsCard = () => {
           <span>Today's On Boarding Calls</span>
         </div>
         <div className="meeting-content">
-          <div className="meeting-item">
-            <div className="meeting-time">
-              <span>1:00pm</span>
-            </div>
-            <div className="meeting-link">
-              <img src="/camsvg.svg" alt="" />
-              <span>https://meet.google.com/XXXX-YZZZ-YYYY</span>
-            </div>
-            <div className="plan-name">
-              <span>Plan Name</span>
-            </div>
+          {MEETINGS &&
+            MEETINGS?.map((item, index) => {
+              return (
+                <div className="meeting-item" key={index}>
+                  <div className="meeting-time">
+                    <span>{item.time}</span>
+                  </div>
+                  <div className="meeting-link">
+                    <img src="/camsvg.svg" alt="" />
+                    <span>{item.meetLink}</span>
+                  </div>
+                  <div className="plan-name">
+                    <span>{item.planName}</span>
+                  </div>
 
-            <div className="plan-duration">
-              <span>3 months</span>
-            </div>
+                  <div className="plan-duration">
+                    <span>{item.planTimeRemaining}</span>
+                  </div>
 
-            <div className="user-details">
-              <span>User details</span>
-            </div>
-          </div>
-          <div className="meeting-item">
-            <div className="meeting-time">
-              <span>1:00pm</span>
-            </div>
-            <div className="meeting-link">
-              <img src="/camsvg.svg" alt="" />
-              <span>https://meet.google.com/XXXX-YZZZ-YYYY</span>
-            </div>
-            <div className="plan-name">
-              <span>Plan Name</span>
-            </div>
-
-            <div className="plan-duration">
-              <span>3 months</span>
-            </div>
-
-            <div className="user-details" onClick={togglePopup}>
-              <span>User details</span>
-            </div>
-          </div>
+                  <div className="user-details">
+                    <span>User details</span>
+                  </div>
+                </div>
+              );
+            })}
         </div>
       </div>
+
       {showPopup && (
         <div className="meetings-card-popup-overlay">
           <UserDetailsPopup togglePopup={togglePopup} />

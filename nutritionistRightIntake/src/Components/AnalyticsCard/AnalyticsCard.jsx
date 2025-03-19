@@ -9,7 +9,11 @@ import {
 } from "recharts";
 import "./AnalyticsCard.css";
 
-const AnalyticsCard = () => {
+const AnalyticsCard = (meetingsArray) => {
+  const clientAnalytics = meetingsArray?.meetingsArray?.clientAnalytics;
+
+  console.log("clientAnalytics : ", clientAnalytics);
+
   const [hoveredMonth, setHoveredMonth] = useState(null);
   const data = [
     { month: "Jan", value: 50 },
@@ -27,7 +31,7 @@ const AnalyticsCard = () => {
       </div>
       <div className="analytics-chart-wrapper">
         <ResponsiveContainer width={500} height={400}>
-          <BarChart data={data}>
+          <BarChart data={clientAnalytics}>
             <XAxis
               dataKey="month"
               axisLine={false} // ✅ Hides the bottom line
@@ -37,14 +41,14 @@ const AnalyticsCard = () => {
             <Tooltip cursor={{ fill: "transparent" }} />
 
             <Bar
-              dataKey="value"
+              dataKey="clients"
               radius={[10, 10, 10, 10]} // Rounded corners
               barSize={100}
               spacing={20}
               onMouseLeave={() => setHoveredMonth(null)}
               style={{ cursor: "pointer", transition: "all 0.3s ease-in-out" }}
             >
-              {data.map((entry) => (
+              {clientAnalytics?.map((entry) => (
                 <Cell
                   key={entry.month}
                   fill={hoveredMonth === entry.month ? "#77A5B9" : "#D3E0EA"}
