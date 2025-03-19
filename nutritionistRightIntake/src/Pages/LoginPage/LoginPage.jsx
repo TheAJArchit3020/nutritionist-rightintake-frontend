@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./LoginPage.css";
 import axios from "axios";
-import { registerapi } from "../../Apis/Apis";
+import { loginapi, registerapi } from "../../Apis/Apis";
 import { Link, useNavigate } from "react-router";
 
 const Login = () => {
@@ -38,26 +38,25 @@ const Login = () => {
 
     if (Object.keys(newErrors).length === 0) {
       try {
-        const registerResponse = await axios.post(registerapi, {
+        const loginResponse = await axios.post(loginapi, {
           email: formData.email,
           password: formData.password,
         });
 
-        if (registerResponse.status === 201) {
-          alert("Registration Successful!");
-
-          navigate("/");
+        if (loginResponse.status === 200) {
+          alert("Login Successful!");
+          localStorage.setItem("userData", JSON.stringify(loginResponse.data));
+          navigate("maindashboardpage");
         } else {
-          alert(registerResponse.message);
+          alert(loginResponse.message);
         }
         // Reset form fields after successful registration
         setFormData({
           email: "",
           password: "",
-          confirmPassword: "",
         });
       } catch (error) {
-        console.error("Registration Error:", error);
+        console.error("Login Error:", error);
       }
 
       // Proceed with login logic (API call, etc.)
