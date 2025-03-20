@@ -1,8 +1,76 @@
 .meetingschedule-container {
   height: 100vh;
-  padding: 25px 100px;
+  width: 100%;
 }
+
 .meeting-schedule-card-wrapper {
   display: flex;
   justify-content: space-between;
+}
+
+
+
+
+
+
+@media screen and (min-width: 768px) {
+  .meeting-card-container {
+    position: relative;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 1rem;
+    margin-left: 300px;
+  }
+
+  .meeting-item {
+
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+
+  }
+
+
+  .meeting-schedule-card-wrapper {
+    flex-direction: column;
+    margin-left: 320px;
+    /* width: 425px; */
+    gap: 2rem;
+  }
+
+
+
+  .recharts-responsive-container {
+    width: 375px !important;
+  }
+
+
+
+
+}
+
+@media screen and (min-width: 1200px) {
+  .meeting-item {
+    flex-direction: row;
+    align-items: center;
+
+  }
+
+  .meeting-schedule-card-wrapper {
+    flex-direction: row;
+    gap: 2rem;
+  }
+
+  .analytics-card-container {
+    flex: 1;
+    margin-right: 1rem;
+  }
+
+  .your-plans-container {
+
+    flex: 1;
+    margin-right: 1rem;
+  }
 }

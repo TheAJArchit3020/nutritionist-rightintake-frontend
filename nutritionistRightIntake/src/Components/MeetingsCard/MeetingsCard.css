@@ -26,7 +26,16 @@
   align-items: center;
   padding: 25px;
 }
-.meeting-time {
+.meeting-card-allmeetingbutton{
+  padding: 0.6rem;
+  background-color: #77A5B9;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  float: inline-end;
+  cursor: pointer;
 }
 
 .meeting-link {

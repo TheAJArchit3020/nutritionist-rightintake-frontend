@@ -10,6 +10,7 @@ const Navbar = ({ onTabChange }) => {
     { name: "Meeting Schedule", icon: "/clocksvg.svg" },
     { name: "Create Plan", icon: "/pencilsvg.svg" },
     { name: "Profile", icon: "/profilesvg.svg" },
+    { name: "All Meeting", icon: "/clocksvg.svg" },
   ];
 
   // State to track active tab

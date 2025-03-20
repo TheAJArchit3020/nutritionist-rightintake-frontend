@@ -1,5 +1,5 @@
 .navbar-container {
-  position: relative;
+  /* position: relative;
   height: 100%;
   display: flex;
   font-size: 1.25rem;
@@ -8,7 +8,17 @@
   height: 100vh;
   padding: 50px 40px;
   justify-self: flex-start;
+  left: 0; */
+  display: flex;
+  font-size: 1.25rem;
+  font-weight: bold;
+  position: fixed;
+  height: 100vh;
+  padding: 25px 20px;
+  justify-self: flex-start;
   left: 0;
+  max-width: 300px;
+  background: #c3dae7;
 }
 
 .navbar-wrapper {
@@ -59,8 +69,11 @@
   border-radius: 10px;
   transition: 0.5s ease;
   cursor: pointer;
-  margin-top: 350px;
+  /* margin-top: 350px; */
+  position: absolute;
+  bottom: 2rem;
 }
+
 .navbar-logout-btn:hover {
   background-color: #c3dae7;
 }

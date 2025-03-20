@@ -54,6 +54,7 @@ const MeetingsCard = (meetingsArray) => {
       <div className="meeting-card-container">
         <div className="meeting-card-heading">
           <span>Today's On Boarding Calls</span>
+          {/* <button type="button" className="meeting-card-allmeetingbutton"  >See all meetings</button> */}
         </div>
         <div className="meeting-content">
           {MEETINGS &&

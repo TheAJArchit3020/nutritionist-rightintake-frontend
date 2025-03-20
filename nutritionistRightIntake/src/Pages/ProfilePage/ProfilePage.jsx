@@ -33,7 +33,6 @@ const ProfilePage = ({ parseusertoken }) => {
     }
   };
 
-  console.log(profileArray);
 
   return (
     <div className="profile-page-wrapper">

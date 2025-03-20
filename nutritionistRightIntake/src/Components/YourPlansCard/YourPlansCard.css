@@ -3,9 +3,10 @@
   border-radius: 32px;
   padding: 25px;
   flex-direction: column;
-  width: 475px;
+  /* width: 475px; */
   background-color: #77a5b9;
   gap: 20px;
+  margin-right: 3rem;
 }
 
 .your-plans-heading {

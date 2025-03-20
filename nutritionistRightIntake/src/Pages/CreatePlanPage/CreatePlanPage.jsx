@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "./CreatePlanPage.css";
 import axios from "axios";
 import { createplanapi } from "../../Apis/Apis";
@@ -21,6 +21,9 @@ const CreatePlanPage = ({ parseusertoken }) => {
   // Pricing State
   const [prices, setPrices] = useState({});
 
+  // File state for the uploaded cover photo
+  const [file, setFile] = useState(null);
+
   // Available Options
   const durations = ["1 Month", "3 Months", "6 Months", "1 Year"];
   const timeSlots = [
@@ -34,7 +37,7 @@ const CreatePlanPage = ({ parseusertoken }) => {
     "2:00 PM",
     "3:00 PM",
     "4:00 PM",
-    "5:00PM",
+    "5:00 PM",
     "6:00 PM",
     "7:00 PM",
     "8:00 PM",
@@ -61,6 +64,28 @@ const CreatePlanPage = ({ parseusertoken }) => {
     }));
   };
 
+  // Handle file selection (either through file input or drag-and-drop)
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+    }
+  };
+
+  // Handle drag and drop events
+  const handleDragOver = (event) => {
+    event.preventDefault();
+  };
+
+  const handleDrop = (event) => {
+    event.preventDefault();
+    const droppedFile = event.dataTransfer.files[0];
+    if (droppedFile) {
+      setFile(droppedFile);
+    }
+  };
+
+  // Create plan handler
   const CreatePlanHandler = async () => {
     try {
       if (token) {
@@ -74,6 +99,7 @@ const CreatePlanPage = ({ parseusertoken }) => {
           availableDays: selectedDays,
           availableTimes: selectedTimeSlots,
           prices,
+          file, // Include the file in the payload if you need it to be uploaded
         };
 
         const response = await axios.post(createplanapi, payload, {
@@ -94,6 +120,7 @@ const CreatePlanPage = ({ parseusertoken }) => {
           setSelectedTimeSlots([]);
           setSelectedDays([]);
           setPrices({});
+          setFile(null); // Reset the file after submission
         }
 
         console.log(response.data);
@@ -103,12 +130,13 @@ const CreatePlanPage = ({ parseusertoken }) => {
     }
   };
 
+  // Create a ref for the file input element
+  const fileInputRef = useRef(null);
+
   return (
     <div className="create-plan-page-container">
-      <div className="create-plan-heading">
-        <span>Create your plan</span>
-      </div>
       <div className="create-plan-form-wrapper">
+        {/* section1 */}
         <div className="create-plan-text-input-group">
           <div className="create-plan-form-group">
             <label>Plan Name</label>
@@ -120,42 +148,19 @@ const CreatePlanPage = ({ parseusertoken }) => {
             />
           </div>
 
-          {/* Benefits */}
-          <div className="create-plan-form-group create-plan-benefits">
-            <label>Benefits</label>
-            <textarea
-              type="text"
-              value={benefits}
-              onChange={(e) => setBenefits(e.target.value)}
-              placeholder="Enter benefits"
-            />
-          </div>
-
-          {/* Features */}
-          <div className="create-plan-form-group create-plan-features">
-            <label>Features</label>
-            <textarea
-              type="text"
-              value={features}
-              onChange={(e) => setFeatures(e.target.value)}
-              placeholder="Enter features"
-            />
-          </div>
-
           {/* Description */}
           <div className="create-plan-form-group create-plan-description">
             <label>Description</label>
             <textarea
               type="text"
+              rows="20"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Enter description"
             />
           </div>
-        </div>
 
-        <div className="create-plan-multiselect-group">
-          {/* Plan Duration (Multi-Select) */}
+          {/* Plan Duration */}
           <div className="create-plan-form-group">
             <label>Plan Duration</label>
             <div className="create-plan-multi-select">
@@ -189,7 +194,7 @@ const CreatePlanPage = ({ parseusertoken }) => {
                 <div
                   key={slot}
                   className={`create-plan-selection-btn ${
-                    selectedDurations.includes(slot)
+                    selectedTimeSlots.includes(slot)
                       ? "create-plan-selection-btn-active"
                       : ""
                   }`}
@@ -206,29 +211,32 @@ const CreatePlanPage = ({ parseusertoken }) => {
               ))}
             </div>
           </div>
-          <div className="create-plan-form-group">
-            <label>Available days</label>
-            <div className="create-plan-multi-select">
-              {days.map((day) => (
-                <div
-                  key={day}
-                  className={`create-plan-selection-btn ${
-                    selectedDurations.includes(day)
-                      ? "create-plan-selection-btn-active"
-                      : ""
-                  }`}
-                  onClick={() =>
-                    toggleSelection(day, setSelectedDays, selectedDays)
-                  }
-                >
-                  {day}
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
 
-        <div className="create-plan-callduration-wrapper">
+        {/* section2 */}
+        <div className="create-plan-section2">
+          {/* Benefits */}
+          <div className="create-plan-form-group create-plan-benefits">
+            <label>Benefits</label>
+            <textarea
+              type="text"
+              value={benefits}
+              onChange={(e) => setBenefits(e.target.value)}
+              placeholder="Enter benefits"
+            />
+          </div>
+
+          {/* Features */}
+          <div className="create-plan-form-group create-plan-features">
+            <label>Features</label>
+            <textarea
+              type="text"
+              value={features}
+              onChange={(e) => setFeatures(e.target.value)}
+              placeholder="Enter features"
+            />
+          </div>
+
           {/* Call Time Limit (Dropdown) */}
           <div className="create-plan-form-group">
             <label>On Boarding Call Duration</label>
@@ -243,16 +251,78 @@ const CreatePlanPage = ({ parseusertoken }) => {
               ))}
             </select>
           </div>
-        </div>
 
-        <div className="create-plan-pricing-inputs-group">
-          {/* Dynamic Plan Pricing */}
-          {selectedDurations.length > 0 && (
-            <div className="create-plan-form-group">
-              <label>Plan Pricing</label>
-              {selectedDurations.map((duration) => (
+          {/* Available Days (Multi-Select) */}
+          <div className="create-plan-form-group">
+            <label>Available days</label>
+            <div className="create-plan-multi-select">
+              {days.map((day) => (
+                <div
+                  key={day}
+                  className={`create-plan-selection-btn ${
+                    selectedDays.includes(day)
+                      ? "create-plan-selection-btn-active"
+                      : ""
+                  }`}
+                  onClick={() =>
+                    toggleSelection(day, setSelectedDays, selectedDays)
+                  }
+                >
+                  {day}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* File Upload Section */}
+          <div className="create-plan-form-group">
+            <label>Add a cover for your plan</label>
+            <div
+              className="create-plan-upload-coverphoto-container"
+              onDrop={handleDrop}
+              onDragOver={handleDragOver}
+            >
+              {/* Display file preview or placeholder */}
+              {file ? (
+                <div className="image-preview-container">
+                  <img
+                    src={URL.createObjectURL(file)} // Display the selected file as an image
+                    alt="Uploaded Cover"
+                    className="uploaded-image-preview"
+                  />
+                </div>
+              ) : (
+                <>
+                  <p>Drag & drop file here</p>
+                  <p>or</p>
+                </>
+              )}
+              <button
+                className="create-plan-uploadimage-button"
+                onClick={() => fileInputRef.current.click()} // Trigger the file input click
+              >
+                <p>Choose a file</p>
+                <img src="./uploadphotoimage.svg" alt="uploadphotoimage" />
+              </button>
+              <input
+                ref={fileInputRef} // Attach the file input to the ref
+                type="file"
+                id="file-upload"
+                accept="image/*"
+                onChange={handleFileChange}
+                style={{ display: "none" }} // Keep it hidden
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="create-plan-pricing-inputs-group">
+        {selectedDurations.length > 0 && (
+          <div className="create-plan-form-group pricing-div">
+            {selectedDurations.map((duration, index) => (
+              <div className="pricing-div-inputes" key={index}>
+                <label>Plan Price ({duration})</label>
                 <div key={duration} className="create-plan-pricing-input">
-                  <label>{duration} Price</label>
                   <input
                     type="number"
                     placeholder={`Enter price for ${duration}`}
@@ -260,18 +330,17 @@ const CreatePlanPage = ({ parseusertoken }) => {
                       handlePriceChange(duration, e.target.value)
                     }
                   />
+                  {/* <p className="create-plan-pricing-inputtext"><i>INR</i></p> */}
                 </div>
-              ))}
-            </div>
-          )}
-        </div>
-
-        <div className="submit-plan-creation-btn" onClick={CreatePlanHandler}>
-          <span>Create Plan</span>
-        </div>
-        {/* Submit Button */}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
-      {/* Plan Name */}
+
+      <div className="submit-plan-creation-btn" onClick={CreatePlanHandler}>
+        <span>Create Plan</span>
+      </div>
     </div>
   );
 };

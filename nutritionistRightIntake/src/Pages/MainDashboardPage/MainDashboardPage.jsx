@@ -4,6 +4,7 @@ import MeetingSchedule from "../MeetingSchedulePage/MeetingSchedule";
 import "./MainDashboardPage.css";
 import CreatePlanPage from "../CreatePlanPage/CreatePlanPage";
 import ProfilePage from "../ProfilePage/ProfilePage";
+import AllMeetings from "../AllMeetings/AllMeetings";
 
 const MainDashboardPage = () => {
   const [activeTab, setActiveTab] = useState("Meeting Schedule");
@@ -27,6 +28,10 @@ const MainDashboardPage = () => {
         {activeTab === "Profile" && (
           <ProfilePage parseusertoken={parseusertoken} />
         )}
+         {activeTab === "All Meeting" && (
+          <AllMeetings parseusertoken={parseusertoken} />
+        )}
+     
       </div>
     </>
   );
