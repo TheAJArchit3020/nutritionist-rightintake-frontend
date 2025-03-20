@@ -321,7 +321,7 @@ const CreatePlanPage = ({ parseusertoken }) => {
           <div className="create-plan-form-group pricing-div">
             {selectedDurations.map((duration, index) => (
               <div className="pricing-div-inputes" key={index}>
-                <label>Plan Price ({duration})</label>
+                <label>Plan Price <span style={{fontWeight:"normal", fontStyle:"italic", fontSize: '16px'}}>({duration})</span> </label>
                 <div key={duration} className="create-plan-pricing-input">
                   <input
                     type="number"

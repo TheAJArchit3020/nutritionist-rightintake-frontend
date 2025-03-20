@@ -29,6 +29,9 @@
 
 .nav-bar-logo {
   margin-bottom: 100px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .navbar-buttons {
@@ -71,10 +74,34 @@
   transition: 0.5s ease;
   cursor: pointer;
   /* margin-top: 350px; */
-  position: absolute;
+  /* position: absolute; */
   bottom: 2rem;
+}
+
+.navbar-buttons {
+  flex-grow: 1; /* Takes up available space */
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.navbar-logout-btn {
+  display: flex;
+  flex-direction: row;
+  gap: 18px;
+  align-items: center;
+  padding: 12px;
+  border-radius: 10px;
+  transition: 0.5s ease;
+  cursor: pointer;
+  margin-top: auto; /* Pushes it to the bottom */
 }
 
 .navbar-logout-btn:hover {
   background-color: #c3dae7;
+}
+
+
+@media screen and (max-width: 768px) {
+ 
 }

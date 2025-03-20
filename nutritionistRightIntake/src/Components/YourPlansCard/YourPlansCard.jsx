@@ -3,7 +3,7 @@ import "./YourPlansCard.css";
 
 const YourPlansCard = (meetingsArray) => {
   const ACTIVEPLAN = meetingsArray?.meetingsArray?.activePlans;
-  console.log("active plans:",ACTIVEPLAN)
+  console.log("active plans:", ACTIVEPLAN);
   return (
     <>
       <div className="your-plans-container">
@@ -21,7 +21,7 @@ const YourPlansCard = (meetingsArray) => {
                       <span>{item?.name}</span>
                     </div>
                     <div className="plan-clients-no">
-                      <span>Active clients: 6 members</span>
+                      <span>Active clients: {item?.activeClients} members</span>
                     </div>
                   </div>
                 </div>

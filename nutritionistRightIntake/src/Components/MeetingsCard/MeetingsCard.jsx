@@ -1,53 +1,79 @@
 import React, { useState } from "react";
 import "./MeetingsCard.css";
 
-const UserDetailsPopup = ({ togglePopup }) => {
+const UserDetailsPopup = ({ selectedUser, closePopup }) => {
+
+  console.log(selectedUser)
   return (
-    <>
-      <div
-        className="meetings-card-popup-box"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="meetings-card-close-popup" onClick={togglePopup}>
-          <img src="/cross-black.svg" alt="" />
-        </div>
-        <div className="u-d-popup-name">
-          <div className="popup-label">
-            <span>Name</span>
-          </div>
-          <div className="u-d-name">
-            <span>Archit Janugade</span>
-          </div>
-        </div>
-        <div className="u-d-popup-name">
-          <div className="popup-label">
-            <span>Height</span>
-          </div>
-          <div className="u-d-name">
-            <span>177cm</span>
-          </div>
-        </div>
-        <div className="u-d-popup-name">
-          <div className="popup-label">
-            <span>Weight</span>
-          </div>
-          <div className="u-d-name">
-            <span>77 KG</span>
-          </div>
-        </div>
+    // <>
+    //   <div
+    //     className="meetings-card-popup-box"
+    //     onClick={(e) => e.stopPropagation()}
+    //   >
+    //     <div className="meetings-card-close-popup" onClick={togglePopup}>
+    //       <img src="/cross-black.svg" alt="" />
+    //     </div>
+    //     <div className="u-d-popup-name">
+    //       <div className="popup-label">
+    //         <span>Name</span>
+    //       </div>
+    //       <div className="u-d-name">
+    //         <span>Archit Janugade</span>
+    //       </div>
+    //     </div>
+    //     <div className="u-d-popup-name">
+    //       <div className="popup-label">
+    //         <span>Height</span>
+    //       </div>
+    //       <div className="u-d-name">
+    //         <span>177cm</span>
+    //       </div>
+    //     </div>
+    //     <div className="u-d-popup-name">
+    //       <div className="popup-label">
+    //         <span>Weight</span>
+    //       </div>
+    //       <div className="u-d-name">
+    //         <span>77 KG</span>
+    //       </div>
+    //     </div>
+    //   </div>
+    // </>
+    <div className="overlay" onClick={closePopup}>
+      <div className="popup" onClick={(e) => e.stopPropagation()}>
+        <button className="close-btn" onClick={closePopup}>
+          &times;
+        </button>
+        <p>
+          <strong>Name:</strong> {selectedUser?.fullName || 'Sumit Solapurkar'}
+        </p>
+        <p>
+          <strong>Height:</strong> {selectedUser?.height || '165'} cm
+        </p>
+        <p>
+          <strong>Weight:</strong> {selectedUser?.weight || '72'} kg
+        </p>
       </div>
-    </>
+    </div>
   );
 };
 const MeetingsCard = (meetingsArray) => {
   const MEETINGS = meetingsArray?.meetingsArray?.meetings;
- 
 
   console.log("meetingsArray in meeting card : ", meetingsArray?.meetingsArray);
   const [showPopup, setShowPopup] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
 
-  const togglePopup = () => {
-    setShowPopup(!showPopup);
+  const handleUserDetailsClick = (user) => {
+    
+    console.log({user});
+    setSelectedUser(user);
+    setShowPopup(true);
+  };
+
+  const closePopup = () => {
+    setShowPopup(false);
+    setSelectedUser(null);
   };
   return (
     <>
@@ -76,7 +102,10 @@ const MeetingsCard = (meetingsArray) => {
                     <span>{item.planTimeRemaining}</span>
                   </div>
 
-                  <div className="user-details">
+                  <div
+                    className="user-details"
+                    onClick={() => handleUserDetailsClick(item)}
+                  >
                     <span>User details</span>
                   </div>
                 </div>
@@ -87,7 +116,10 @@ const MeetingsCard = (meetingsArray) => {
 
       {showPopup && (
         <div className="meetings-card-popup-overlay">
-          <UserDetailsPopup togglePopup={togglePopup} />
+          <UserDetailsPopup
+            selectedUser={selectedUser}
+            closePopup={closePopup}
+          />
         </div>
       )}
     </>
