@@ -38,12 +38,13 @@ p.registration-page-section2-para1 {
     font-size: 48px;
     font-weight: bold;
 }
+
 p.registration-page-section2-para2 {
     font-size: 24px;
 }
 
 
-.registration-page-section3{
+.registration-page-section3 {
     margin-top: 5rem;
     display: flex;
     flex-direction: column;
@@ -51,15 +52,15 @@ p.registration-page-section2-para2 {
     gap: 32px;
 }
 
-.registration-page-form-input{
+.registration-page-form-input {
     border: 1px solid #999999;
     border-radius: 8px;
     padding: 12px 10px;
-    width: 390px;
+    width: 390px !important;
     background-color: transparent;
 }
 
-.registration-page-signup-button{
+.registration-page-signup-button {
     box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 10%);
     text-align: center;
     background-color: #EAF0F4;
@@ -73,13 +74,37 @@ p.registration-page-section2-para2 {
     margin-top: 60px;
     cursor: pointer;
 }
-.registration-error-text{
+
+.registration-error-text {
     color: red;
     text-align: left;
     width: 390px;
     font-size: 14px;
     margin-top: -20px;
 }
+
 .registration-input-error {
     border: 2px solid red !important;
-  }
+}
+
+
+
+@media screen and (max-width: 768px) {
+
+    img.image1 {
+        display: none;
+    }
+
+    .registration-page-container-wrapper {
+        padding: 1rem;
+    }
+
+    .registration-page-form-input,
+    .registration-page-forgotpass,
+    .registration-page-signup-button,
+    .registration-error-text {
+
+        width: 280px !important;
+    }
+
+}

@@ -19,10 +19,10 @@ body {
   font-weight: 400;
   background-color: #f8f9fa; /* Light gray background */
   color: #333; /* Default text color */
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
 }
 img,
 svg {

@@ -34,7 +34,8 @@
 .navbar-buttons {
   display: flex;
   flex-direction: column;
-  gap: 65px;
+  /* gap: 65px; */
+  gap: 6px;
 }
 
 .navbar-btn {
