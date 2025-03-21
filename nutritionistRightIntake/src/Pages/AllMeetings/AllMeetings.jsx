@@ -47,7 +47,7 @@ const AllMeetings = ({ parseusertoken }) => {
         <div className="allmeeting-header-wrapper">
           <h2>All Meetings</h2>
         </div>
-        {allmeetingArray && (
+        {allmeetingArray?.length > 0 && (
           <>
             <div className="allmeeting-card">
               <div className="meeting-content">
@@ -106,7 +106,7 @@ const AllMeetings = ({ parseusertoken }) => {
             )}
           </>
         )}
-        {!allmeetingArray && <img src="./noactiveplans.svg" alt="" />}
+        {!allmeetingArray.length > 0 && <img src="./nomeetingschedule.svg" alt="" />}
       </div>
     </>
   );
