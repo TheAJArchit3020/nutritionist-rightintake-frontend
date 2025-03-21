@@ -75,57 +75,60 @@ const MeetingsCard = (meetingsArray) => {
   };
   return (
     <>
-      <div className="meeting-card-container">
+      <div className="meeting-card-container meeting-card-container-mobile">
         <div className="meeting-card-heading">
           <span>Today's On Boarding Calls</span>
           {/* <button type="button" className="meeting-card-allmeetingbutton"  >See all meetings</button> */}
         </div>
-        <div className="meeting-content">
-          {MEETINGS &&
-            MEETINGS?.map((item, index) => {
-              return (
-                <div className="meeting-item" key={index}>
-                  <div className="meeting-time">
-                    <span>{item.time}</span>
-                  </div>
-                  <div
-                    className="meeting-link"
-                    onClick={() =>
-                      window.open(
-                        item.meetLink,
-                        "_blank",
-                        "noopener,noreferrer"
-                      )
-                    }
-                  >
-                    <img src="/camsvg.svg" alt="Meeting Icon" />
-                    <span
-                      style={{
-                        cursor: "pointer",
-                      }}
+        {MEETINGS && (
+          <div className="meeting-content">
+            {MEETINGS &&
+              MEETINGS?.map((item, index) => {
+                return (
+                  <div className="meeting-item" key={index}>
+                    <div className="meeting-time">
+                      <span>{item.time}</span>
+                    </div>
+                    <div
+                      className="meeting-link"
+                      onClick={() =>
+                        window.open(
+                          item.meetLink,
+                          "_blank",
+                          "noopener,noreferrer"
+                        )
+                      }
                     >
-                      {item.meetLink}
-                    </span>
-                  </div>
+                      <img src="/camsvg.svg" alt="Meeting Icon" />
+                      <span
+                        style={{
+                          cursor: "pointer",
+                        }}
+                      >
+                        {item.meetLink}
+                      </span>
+                    </div>
 
-                  <div className="plan-name">
-                    <span>{item.planName}</span>
-                  </div>
+                    <div className="plan-name">
+                      <span>{item.planName}</span>
+                    </div>
 
-                  <div className="plan-duration">
-                    <span>{item.planTimeRemaining}</span>
-                  </div>
+                    <div className="plan-duration">
+                      <span>{item.planTimeRemaining}</span>
+                    </div>
 
-                  <div
-                    className="user-details"
-                    onClick={() => handleUserDetailsClick(item)}
-                  >
-                    <span>User details</span>
+                    <div
+                      className="user-details"
+                      onClick={() => handleUserDetailsClick(item)}
+                    >
+                      <span>User details</span>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
-        </div>
+                );
+              })}
+          </div>
+        )}
+        {!MEETINGS && <img src="./nomeetingschedule.svg" alt="" />}
       </div>
 
       {showPopup && (

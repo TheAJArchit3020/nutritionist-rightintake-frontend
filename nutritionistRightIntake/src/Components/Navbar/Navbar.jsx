@@ -67,12 +67,19 @@ const Navbar = ({ onTabChange }) => {
           </div>
         </div>
       )}
-      {/* <img
-        src="./barssolid.svg"
-        alt=""
-        style={{ marginLeft: "1rem" }}
-        onClick={toggleNavbar}
-      /> */}
+      {!showNavbar && (
+        <img
+          src="./barssolid.svg"
+          alt=""
+          style={{
+            width: "30px",
+            position: "absolute",
+            left: "0",
+            margin: "1rem",
+          }}
+          onClick={toggleNavbar}
+        />
+      )}
     </>
   );
 };

@@ -10,8 +10,18 @@
 
 
 
+.meeting-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-bottom: 1px solid #d3d3d3;
+  align-items: flex-start;
+  padding: 7px;
+}
 
-
+.meeting-card-container-mobile{
+  padding-top: 5rem;
+}
 
 @media screen and (min-width: 768px) {
   .meeting-card-container {
