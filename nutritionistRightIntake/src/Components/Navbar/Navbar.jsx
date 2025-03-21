@@ -5,6 +5,7 @@ import RightIntakelabelLogo from "/rightintakelabel.svg";
 import ClockSvg from "/clocksvg.svg";
 import PencilSvg from "/pencilsvg.svg";
 import ProfileSvg from "/profilesvg.svg";
+import { Link } from "react-router";
 const Navbar = ({ onTabChange }) => {
   // Define nav items with associated icons
   const navItems = [
@@ -57,19 +58,21 @@ const Navbar = ({ onTabChange }) => {
                 </div>
               ))}
             </div>
-            <div className="navbar-logout-btn">
-              <img src="/signoutsvg.svg" alt="" />
-              <span>Log out</span>
-            </div>
+            <Link to={"/"}>
+              <div className="navbar-logout-btn">
+                <img src="/signoutsvg.svg" alt="" />
+                <span>Log out</span>
+              </div>
+            </Link>
           </div>
         </div>
       )}
-      <img
-        src="./righticon.png"
+      {/* <img
+        src="./barssolid.svg"
         alt=""
         style={{ marginLeft: "1rem" }}
         onClick={toggleNavbar}
-      />
+      /> */}
     </>
   );
 };

@@ -53,7 +53,12 @@ const AllMeetings = ({ parseusertoken }) => {
               <div className="meeting-time">
                 <span>{item.time}</span>
               </div>
-              <div className="meeting-link">
+              <div
+                className="meeting-link"
+                onClick={() =>
+                  window.open(item.meetLink, "_blank", "noopener,noreferrer")
+                }
+              >
                 <img src="/camsvg.svg" alt="" />
                 <span>{item.meetLink}</span>
               </div>

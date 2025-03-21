@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import "./MeetingsCard.css";
 
 const UserDetailsPopup = ({ selectedUser, closePopup }) => {
-
-  console.log(selectedUser)
+  console.log(selectedUser);
   return (
     // <>
     //   <div
@@ -45,13 +44,13 @@ const UserDetailsPopup = ({ selectedUser, closePopup }) => {
           &times;
         </button>
         <p>
-          <strong>Name:</strong> {selectedUser?.fullName || 'Sumit Solapurkar'}
+          <strong>Name:</strong> {selectedUser?.fullName || "Sumit Solapurkar"}
         </p>
         <p>
-          <strong>Height:</strong> {selectedUser?.height || '165'} cm
+          <strong>Height:</strong> {selectedUser?.height || "165"} cm
         </p>
         <p>
-          <strong>Weight:</strong> {selectedUser?.weight || '72'} kg
+          <strong>Weight:</strong> {selectedUser?.weight || "72"} kg
         </p>
       </div>
     </div>
@@ -65,8 +64,7 @@ const MeetingsCard = (meetingsArray) => {
   const [selectedUser, setSelectedUser] = useState(null);
 
   const handleUserDetailsClick = (user) => {
-    
-    console.log({user});
+    console.log({ user });
     setSelectedUser(user);
     setShowPopup(true);
   };
@@ -90,10 +88,26 @@ const MeetingsCard = (meetingsArray) => {
                   <div className="meeting-time">
                     <span>{item.time}</span>
                   </div>
-                  <div className="meeting-link">
-                    <img src="/camsvg.svg" alt="" />
-                    <span>{item.meetLink}</span>
+                  <div
+                    className="meeting-link"
+                    onClick={() =>
+                      window.open(
+                        item.meetLink,
+                        "_blank",
+                        "noopener,noreferrer"
+                      )
+                    }
+                  >
+                    <img src="/camsvg.svg" alt="Meeting Icon" />
+                    <span
+                      style={{
+                        cursor: "pointer",
+                      }}
+                    >
+                      {item.meetLink}
+                    </span>
                   </div>
+
                   <div className="plan-name">
                     <span>{item.planName}</span>
                   </div>
