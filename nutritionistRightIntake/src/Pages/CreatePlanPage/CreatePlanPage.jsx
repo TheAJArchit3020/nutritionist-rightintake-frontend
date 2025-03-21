@@ -86,30 +86,92 @@ const CreatePlanPage = ({ parseusertoken }) => {
   };
 
   // Create plan handler
+  // const CreatePlanHandler = async () => {
+  //   try {
+  //     if (token) {
+  //       const payload = {
+  //         name: planName,
+  //         description,
+  //         benefits,
+  //         features,
+  //         duration: selectedDurations,
+  //         callDuration: callTimeLimit,
+  //         availableDays: selectedDays,
+  //         availableTimes: selectedTimeSlots,
+  //         prices,
+  //         file, // Include the file in the payload if you need it to be uploaded
+  //       };
+
+  //       const response = await axios.post(createplanapi, payload, {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       });
+
+  //       if (response.status === 200) {
+  //         alert(response.data.message);
+  //         // Reset form values
+  //         setPlanName("");
+  //         setBenefits("");
+  //         setFeatures("");
+  //         setDescription("");
+  //         setCallTimeLimit("30 mins");
+  //         setSelectedDurations([]);
+  //         setSelectedTimeSlots([]);
+  //         setSelectedDays([]);
+  //         setPrices({});
+  //         setFile(null); // Reset the file after submission
+  //       }
+
+  //       console.log(response.data);
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
   const CreatePlanHandler = async () => {
     try {
       if (token) {
-        const payload = {
-          name: planName,
-          description,
-          benefits,
-          features,
-          duration: selectedDurations,
-          callDuration: callTimeLimit,
-          availableDays: selectedDays,
-          availableTimes: selectedTimeSlots,
-          prices,
-          file, // Include the file in the payload if you need it to be uploaded
-        };
+        const formData = new FormData();
 
-        const response = await axios.post(createplanapi, payload, {
+        // Append text fields
+        formData.append("name", planName);
+        formData.append("description", description);
+        formData.append("benefits", benefits);
+        formData.append("features", features);
+        formData.append("callDuration", callTimeLimit);
+
+        // Append array fields as repeated key-value pairs
+        selectedDurations.forEach((duration) =>
+          formData.append("duration[]", duration)
+        );
+        selectedDays.forEach((day) => formData.append("availableDays[]", day));
+        selectedTimeSlots.forEach((time) =>
+          formData.append("availableTimes[]", time)
+        );
+
+        // Append prices as key-value pairs
+        Object.entries(prices).forEach(([key, value]) => {
+          formData.append(`prices[${key}]`, value);
+        });
+
+        // Append file if selected
+        if (file) {
+          formData.append("image", file);
+        }
+
+        // Send request with multipart/form-data
+        const response = await axios.post(createplanapi, formData, {
           headers: {
             Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
           },
         });
 
         if (response.status === 200) {
           alert(response.data.message);
+
           // Reset form values
           setPlanName("");
           setBenefits("");
@@ -120,13 +182,13 @@ const CreatePlanPage = ({ parseusertoken }) => {
           setSelectedTimeSlots([]);
           setSelectedDays([]);
           setPrices({});
-          setFile(null); // Reset the file after submission
+          setFile(null);
         }
 
         console.log(response.data);
       }
     } catch (error) {
-      console.error(error);
+      console.error("Error creating plan:", error);
     }
   };
 
@@ -321,7 +383,18 @@ const CreatePlanPage = ({ parseusertoken }) => {
           <div className="create-plan-form-group pricing-div">
             {selectedDurations.map((duration, index) => (
               <div className="pricing-div-inputes" key={index}>
-                <label>Plan Price <span style={{fontWeight:"normal", fontStyle:"italic", fontSize: '16px'}}>({duration})</span> </label>
+                <label>
+                  Plan Price{" "}
+                  <span
+                    style={{
+                      fontWeight: "normal",
+                      fontStyle: "italic",
+                      fontSize: "16px",
+                    }}
+                  >
+                    ({duration})
+                  </span>{" "}
+                </label>
                 <div key={duration} className="create-plan-pricing-input">
                   <input
                     type="number"
