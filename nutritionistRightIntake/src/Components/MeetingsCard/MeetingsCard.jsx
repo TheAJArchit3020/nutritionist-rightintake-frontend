@@ -128,7 +128,7 @@ const MeetingsCard = (meetingsArray) => {
               })}
           </div>
         )}
-        {!MEETINGS && <img src="./nomeetingschedule.svg" alt="" />}
+        {!MEETINGS && <img src="./nomeetingschedule.png" alt="" />}
       </div>
 
       {showPopup && (

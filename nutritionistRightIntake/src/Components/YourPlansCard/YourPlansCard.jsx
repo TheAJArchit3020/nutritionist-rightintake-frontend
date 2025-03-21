@@ -34,7 +34,7 @@ const YourPlansCard = (meetingsArray) => {
         </div>
       )}
 
-      {!ACTIVEPLAN && <img src="./noactiveplans.svg" alt="" />}
+      {!ACTIVEPLAN && <img src="./noactiveplans.png" alt="" />}
     </>
   );
 };

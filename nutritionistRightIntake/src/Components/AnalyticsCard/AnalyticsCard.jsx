@@ -62,7 +62,7 @@ const AnalyticsCard = (meetingsArray) => {
         </div>
       )}
 
-      {!clientAnalytics && <img src="./noactiveclients.svg" alt="" />}
+      {!clientAnalytics && <img src="./noactiveclients.png" alt="" />}
     </>
   );
 };

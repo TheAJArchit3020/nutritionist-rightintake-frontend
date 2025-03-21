@@ -106,7 +106,7 @@ const AllMeetings = ({ parseusertoken }) => {
             )}
           </>
         )}
-        {!allmeetingArray.length > 0 && <img src="./nomeetingschedule.svg" alt="" />}
+        {!allmeetingArray.length > 0 && <img src="./nomeetingschedule.png" alt="" />}
       </div>
     </>
   );
