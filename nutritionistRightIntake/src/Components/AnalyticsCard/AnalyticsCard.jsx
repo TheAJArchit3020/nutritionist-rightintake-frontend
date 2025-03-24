@@ -18,7 +18,7 @@ const AnalyticsCard = (meetingsArray) => {
 
   return (
     <>
-      {clientAnalytics && (
+      {clientAnalytics?.length > 0 && (
         <div className="analytics-card-container">
           <div className="analytics-card-heading">
             <span>Client Analytics</span>
@@ -62,7 +62,7 @@ const AnalyticsCard = (meetingsArray) => {
         </div>
       )}
 
-      {!clientAnalytics && <img src="./noactiveclients.png" alt="" />}
+      {clientAnalytics?.length === 0 && <img src="./noactiveclients.png" alt="" className="clientanalytic-image" />}
     </>
   );
 };

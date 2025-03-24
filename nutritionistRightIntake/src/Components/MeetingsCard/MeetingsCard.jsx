@@ -4,40 +4,7 @@ import "./MeetingsCard.css";
 const UserDetailsPopup = ({ selectedUser, closePopup }) => {
   console.log(selectedUser);
   return (
-    // <>
-    //   <div
-    //     className="meetings-card-popup-box"
-    //     onClick={(e) => e.stopPropagation()}
-    //   >
-    //     <div className="meetings-card-close-popup" onClick={togglePopup}>
-    //       <img src="/cross-black.svg" alt="" />
-    //     </div>
-    //     <div className="u-d-popup-name">
-    //       <div className="popup-label">
-    //         <span>Name</span>
-    //       </div>
-    //       <div className="u-d-name">
-    //         <span>Archit Janugade</span>
-    //       </div>
-    //     </div>
-    //     <div className="u-d-popup-name">
-    //       <div className="popup-label">
-    //         <span>Height</span>
-    //       </div>
-    //       <div className="u-d-name">
-    //         <span>177cm</span>
-    //       </div>
-    //     </div>
-    //     <div className="u-d-popup-name">
-    //       <div className="popup-label">
-    //         <span>Weight</span>
-    //       </div>
-    //       <div className="u-d-name">
-    //         <span>77 KG</span>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </>
+   
     <div className="overlay" onClick={closePopup}>
       <div className="popup" onClick={(e) => e.stopPropagation()}>
         <button className="close-btn" onClick={closePopup}>
@@ -80,7 +47,7 @@ const MeetingsCard = (meetingsArray) => {
           <span>Today's On Boarding Calls</span>
           {/* <button type="button" className="meeting-card-allmeetingbutton"  >See all meetings</button> */}
         </div>
-        {MEETINGS && (
+        {MEETINGS?.length > 0 && (
           <div className="meeting-content">
             {MEETINGS &&
               MEETINGS?.map((item, index) => {
@@ -128,7 +95,7 @@ const MeetingsCard = (meetingsArray) => {
               })}
           </div>
         )}
-        {!MEETINGS && <img src="./nomeetingschedule.png" alt="" />}
+        {MEETINGS?.length === 0 && <img src="./nomeetingschedule.png" alt="" />}
       </div>
 
       {showPopup && (

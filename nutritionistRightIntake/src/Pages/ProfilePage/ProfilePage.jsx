@@ -4,6 +4,10 @@ import axios from "axios";
 import { userprofileapi } from "../../Apis/Apis";
 
 const ProfilePage = ({ parseusertoken }) => {
+  console.log(parseusertoken?.nutritionist?._id);
+
+  const nutrition_id = parseusertoken?.nutritionist?._id;
+
   const token = parseusertoken?.token;
   const fetched = useRef(false);
   const [profileArray, setProfileArray] = useState([]);
@@ -17,11 +21,14 @@ const ProfilePage = ({ parseusertoken }) => {
 
   const GetuserProfile = async (token) => {
     try {
-      const profileresponse = await axios.get(userprofileapi, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const profileresponse = await axios.get(
+        `${userprofileapi}/${nutrition_id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       if (profileresponse.status === 200) {
         console.log(profileresponse.data);
         setProfileArray(profileresponse.data);
@@ -32,7 +39,6 @@ const ProfilePage = ({ parseusertoken }) => {
       console.error(error);
     }
   };
-
 
   return (
     <div className="profile-page-wrapper">
