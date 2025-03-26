@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import "./forgotPasswordPage.css";
+import "./ForgotPasswordPage.css";
 
 const ForgotPassword = () => {
-
   const [formData, setFormData] = useState({
     password: "",
   });
@@ -14,16 +13,14 @@ const ForgotPassword = () => {
     }));
   };
 
-
-
   return (
     <div className="forgotpassword-page-container">
       <img src="./loginimage.svg" alt="forgotpassword" />
       <div className="forgotpassword-page-container-wrapper">
         <div className="forgotpassword-page-container-content">
           <div className="forgotpassword-page-section1">
-          <img src="./rightintakefilllogo.svg" alt="logo" />
-          <img src="./rightintakelabel.svg" alt="logo" />
+            <img src="./rightintakefilllogo.svg" alt="logo" />
+            <img src="./rightintakelabel.svg" alt="logo" />
           </div>
           <div className="forgotpassword-page-section2">
             <p className="forgotpassword-page-section2-para1">
