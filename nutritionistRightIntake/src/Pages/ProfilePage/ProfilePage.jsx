@@ -50,15 +50,19 @@ const ProfilePage = ({ parseusertoken }) => {
       </div>
       <div className="profile-other-details-card">
         <div className="profile-mobile-no-item other-details-item">
-          <span>Mobile No :</span>
-          <span>{profileArray?.nutritionist?.mobileNumber}</span>
+          <span className="profile-label">Mobile No :</span>
+          <span className="profile-para">
+            {profileArray?.nutritionist?.mobileNumber}
+          </span>
         </div>
         <div className="profile-mobile-email-item other-details-item">
-          <span>Email ID :</span>
-          <span>{profileArray?.nutritionist?.email}</span>
+          <span className="profile-label">Email ID :</span>
+          <span className="profile-para">
+            {profileArray?.nutritionist?.email}
+          </span>
         </div>
         <div className="profile-reset-pass-item other-details-item">
-          <span>Reset Password</span>
+          <span className="profile-reset-button">Reset Password</span>
         </div>
       </div>
     </div>

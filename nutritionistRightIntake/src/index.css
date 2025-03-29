@@ -14,15 +14,13 @@ html {
 
 body {
   min-height: 100vh; /* Full height */
-  font-family: "Raleway", sans-serif;
+  /* font-family: "Raleway", sans-serif; */
+  font-family: "Plus Jakarta Sans";
   font-optical-sizing: auto;
   font-weight: 400;
   background-color: #f8f9fa; /* Light gray background */
   color: #333; /* Default text color */
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; */
+
 }
 img,
 svg {

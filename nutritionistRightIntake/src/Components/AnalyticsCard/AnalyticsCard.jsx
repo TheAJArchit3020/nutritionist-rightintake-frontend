@@ -15,6 +15,14 @@ const AnalyticsCard = (meetingsArray) => {
   console.log("clientAnalytics : ", clientAnalytics);
 
   const [hoveredMonth, setHoveredMonth] = useState(null);
+  const data = [
+    { month: "Jan", value: 50 },
+    { month: "Feb", value: 30 },
+    { month: "Mar", value: 80 },
+    { month: "Apr", value: 50 },
+    { month: "May", value: 20 },
+    { month: "June", value: 90 },
+  ];
 
   return (
     <>
@@ -24,7 +32,7 @@ const AnalyticsCard = (meetingsArray) => {
             <span>Client Analytics</span>
           </div>
           <div className="analytics-chart-wrapper">
-            <ResponsiveContainer width={500} height={400}>
+            <ResponsiveContainer  width={250} height={400}>
               <BarChart data={clientAnalytics}>
                 <XAxis
                   dataKey="month"
@@ -54,7 +62,9 @@ const AnalyticsCard = (meetingsArray) => {
                       strokeWidth={2}
                       onMouseEnter={() => setHoveredMonth(entry.month)}
                     />
+                    
                   ))}
+                  
                 </Bar>
               </BarChart>
             </ResponsiveContainer>

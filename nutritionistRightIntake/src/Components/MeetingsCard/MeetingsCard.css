@@ -3,8 +3,9 @@
   padding: 15px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 2rem;
   font-size: 1rem;
+
 }
 .meeting-card-heading {
   font-size: 1.5rem;
@@ -25,6 +26,7 @@
   border-bottom: 1px solid #d3d3d3;
   align-items: center;
   padding: 25px;
+  padding-bottom: 1rem;
 }
 .meeting-card-allmeetingbutton{
   padding: 0.6rem;
@@ -47,15 +49,18 @@
   border-radius: 50px;
   cursor: pointer;
   transition: 0.5s ease;
+  width: 400px;
+
 }
 
 .meeting-link:hover {
   background-color: #d0e0f7;
 }
-.plan-name {
+.plan-name, .plan-duration {
+  width: 200px;
+
 }
-.plan-duration {
-}
+
 .meetings-card-popup-box {
   position: fixed;
   background-color: white;
@@ -107,4 +112,16 @@
   border: 1px solid #00000079;
   padding: 10px 20px;
   color: rgb(80, 80, 80);
+}
+
+
+@media screen and (max-width: 700px) {
+  .meeting-link {
+    width: 250px;
+    font-size: 0.8rem;
+  }
+  .meeting-card-heading {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
 }
