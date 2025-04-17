@@ -1,45 +1,26 @@
 import React, { useState } from "react";
 import "./MeetingsCard.css";
+import { useNavigate } from "react-router";
 
-const UserDetailsPopup = ({ selectedUser, closePopup }) => {
-  console.log(selectedUser);
-  return (
-   
-    <div className="overlay" onClick={closePopup}>
-      <div className="popup" onClick={(e) => e.stopPropagation()}>
-        <button className="close-btn" onClick={closePopup}>
-          &times;
-        </button>
-        <p>
-          <strong>Name:</strong> {selectedUser?.fullName || "Sumit Solapurkar"}
-        </p>
-        <p>
-          <strong>Height:</strong> {selectedUser?.height || "165"} cm
-        </p>
-        <p>
-          <strong>Weight:</strong> {selectedUser?.weight || "72"} kg
-        </p>
-      </div>
-    </div>
-  );
-};
+
 const MeetingsCard = (meetingsArray) => {
+  const navigate = useNavigate();
   const MEETINGS = meetingsArray?.meetingsArray?.meetings;
 
   console.log("meetingsArray in meeting card : ", meetingsArray?.meetingsArray);
-  const [showPopup, setShowPopup] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
 
   const handleUserDetailsClick = (user) => {
     console.log({ user });
     setSelectedUser(user);
-    setShowPopup(true);
+    navigate(`/userdetailspage`, {
+      state: {
+        id: user?.userId,
+      },
+    });
   };
 
-  const closePopup = () => {
-    setShowPopup(false);
-    setSelectedUser(null);
-  };
+  
   return (
     <>
       <div className="meeting-card-container meeting-card-container-mobile">
@@ -98,14 +79,7 @@ const MeetingsCard = (meetingsArray) => {
         {MEETINGS?.length === 0 && <img src="./nomeetingschedule.png" alt="" />}
       </div>
 
-      {showPopup && (
-        <div className="meetings-card-popup-overlay">
-          <UserDetailsPopup
-            selectedUser={selectedUser}
-            closePopup={closePopup}
-          />
-        </div>
-      )}
+     
     </>
   );
 };
